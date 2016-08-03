@@ -12,8 +12,8 @@ button {
 }
 
 .button:hover, .button:focus {
-	box-shadow: 0 4px 2px -2px #FF7043, 0 -2px 1px -2px #FF7043;
-	background-color: rgba(255,255,255,1);
+	box-shadow: 0 4px 2px -2px #00C73C,0 -2px 1px -2px #00C73C;
+	background-color: #EFF0F1;
 	color: #000000;
 	outline: none;
 	transition-duration: 0.3s;

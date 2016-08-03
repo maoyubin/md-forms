@@ -335,7 +335,7 @@
 	padding: 2.5em;
 	background-color: #FFFFFF;
 	border-radius: 5px;
-	border-top: 5px solid #FF7043;
+	border-top: 5px solid #00C73C;
 	color: #616161;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
 }
@@ -493,7 +493,7 @@
 	padding: 4.5em 2.5em 2.5em 2.5em;
 	background-color: #FFFFFF;
 	border-radius: 5px;
-	border-top: 5px solid #FF7043;
+	border-top: 5px solid #00C73C;
 	color: #616161;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
 }
@@ -517,7 +517,7 @@
 	top: 0;
 	left: 0;
 	padding: 2%;
-	background-color: #FF7043;
+	background-color: #00C73C;
 	color: #FFFFFF;
 	text-align: center;
 	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
