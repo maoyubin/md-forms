@@ -4,17 +4,19 @@
 	<meta charset="utf-8">
 	<title>Web items</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
-	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/form.css">
-	<link rel="stylesheet" href="css/buttons.css">
+	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/form.css">
+	<link rel="stylesheet" href="../css/buttons.css">
+	<script type="text/javascript" src="../lib/validator.js"></script>
+  	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 	<header class="menu">
 		<nav>
 			<ul>
-				<li><a href="../../index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Projects</a></li>
-				<li><a href="index.html">All Forms</a></li>
+				<li><a href="../../../index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Projects</a></li>
+				<li><a href="../index.html">All Forms</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -29,9 +31,9 @@
 					<h1>Login</h1>
 					<span><a href="signup.html">Create an Account</a></span>
 				</div>
-				<form class="login-form">
-					<label for="email">Email: *</label>
-					<input type="email" class="text-input" name="email" id="email" autofocus>
+				<form class="login-form" id='my_form' action="_self">
+					<label for="username">User Name: *</label>
+					<input type="text" class="text-input" name="username" id="username" autofocus>
 					<label for="password">Password: *</label>
 					<span><a href="#">Forgot?</a></span>
 					<input type="password" class="text-input" name="password" id="password">
