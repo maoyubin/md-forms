@@ -29,16 +29,22 @@
 			<div class="login">
 				<div class="login-header">
 					<h1>Login</h1>
-					<span><a href="signup.html">Create an Account</a></span>
+					<span><a href="../signup/signup.html">Create an Account</a></span>
 				</div>
 				<form class="login-form" id='my_form' novalidate>
 					<label for="username">User Name: *</label>
 					<input type="text" class="text-input" name="username" id="username" autofocus>
-					<span class="error" aria-live="polite"></span>
+					<span class="name-error" aria-live="polite"></span>
+
+					<div class="pad-div-top">
 					<label for="password">Password: *</label>
 					<span><a href="#">Forgot?</a></span>
+					</div>
+
 					<input type="password" class="text-input" name="password" id="password">
-					<button type="submit" class="button button-lg">Login</button>
+					<span class="pw-error" aria-live="polite"></span>
+
+					<button id="login" type="submit" class="button button-lg">Login</button>
 				</form>
 			</div>
 		</div>
@@ -50,28 +56,34 @@
 	<script type="text/javascript">
 		var form  = document.getElementsByTagName('form')[0];
 		var username = document.getElementById('username');
-		var error = document.querySelector('.error');
+		var password = document.getElementById('password');
+
+		var error = document.querySelector('.name-error');
+		var pwError = document.querySelector('.pw-error');
 
 		username.addEventListener("keyup", function (event) {		  
 		  if (validator.isAlphanumeric(username.value)) {
 		    error.innerHTML = ""; 
-		    error.className = "error"; 
+		    error.className = "name-error"; 
 		  	username.className= "valid";
 		  }else{
 		  	username.className= "invalid";
 		  }
 		}, false);
+
 		form.addEventListener("submit", function (event) {
-		  // Each time the user tries to send the data, we check
-		  // if the username field is valid.
-		  if (!validator.isAlphanumeric(username.value) || validator.isEmpty(username.value)) {
-		    
-		    // If the field is not valid, we display a custom
-		    // error message.You can't leave this empty
-		    error.innerHTML = "What's your name?";
-		    error.className = "error active";
-		    // And we prevent the form from being sent by canceling the event
-		    event.preventDefault();
+		  if (!validator.isAlphanumeric(username.value)) {
+		  	error.innerHTML = "Please check your name.";
+		  	error.className = "name-error active";
+		  	error.preventDefault();
+		  }else if (validator.isEmpty(username.value)) {
+		  	error.innerHTML = "What's your name?";
+		  	error.className = "name-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(password.value)) {
+		  	pwError.innerHTML = "Please input password.";
+		  	pwError.className = "pw-error active";
+		  	event.preventDefault();
 		  }
 		}, false);
 	</script>

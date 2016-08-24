@@ -51,14 +51,17 @@
 	display: block;
 	clear: both;
 }
+
+.pad-div-top {
+	margin: 1em auto 0em;
+}
+
 .login-form input[type="email"],
 .login-form input[type="password"],
 .login-form input[type="text"] {
 	width: 100%;
 	height: 2.5em;
 	padding: 0.3125em;
-	margin-top: 0.3125em;
-	margin-bottom: 0.9375em;
 	font-size: 1.25em;
 	color: rgba(0,0,0,0.6);
 	border: 1px solid #E0E0E0;
@@ -68,6 +71,10 @@
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
 	border: 2px solid #E0E0E0;
+}
+
+.login-form #login {
+	margin-top: 1.5em;
 }
 
 /** End Login Form */
