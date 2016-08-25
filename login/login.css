@@ -1,0 +1,103 @@
+
+.pad-div-top {
+  margin: 1em auto 0em;
+}
+
+/** LOGIN FORM */
+.login {
+  width: 35%;
+  margin: 5% auto;
+  padding: 2.5em;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  border-top: 5px solid #00C73C;
+  color: #616161;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
+}
+.login h1 {
+  display: inline-block;
+}
+.login span {
+  display: inline-block;
+  float: right;
+  font-size: 0.75em;
+}
+.login span a {
+  color: #616161;
+  text-decoration: underline;
+}
+.login span a:hover {
+  text-decoration: none;
+}
+.login-header {
+  padding-bottom: 0.75em;
+  margin-bottom: 0.75em;
+}
+.login-header:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.login-header span {
+  padding-top: 20px;
+}
+.login-form input,
+.login-form button {
+  display: block;
+  width: 100%;
+}
+.login-form label {
+  display: inline-block;
+}
+.login-form label:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="text"] {
+  width: 100%;
+  height: 2.5em;
+  font-size: 1.25em;
+  color: rgba(0,0,0,0.6);
+  border: 1px solid #E0E0E0;
+  border-radius: 3px;
+  transition: 0.3s
+}
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border: 2px solid #E0E0E0;
+}
+
+.login-form #login {
+  margin-top: 1.5em;
+}
+
+/** End Login Form */
+
+/* This is our style for the invalid fields */
+input.invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+
+input.valid {
+  outline: none;
+}
+
+/* This is the style of our error messages */
+.name-error, .pw-error {
+  width  : 100%;
+  padding: 0;
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.name-error.active, .pw-error.active {
+  padding: 0.3em;
+}

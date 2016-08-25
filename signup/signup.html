@@ -6,8 +6,9 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
 	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/form.css">
 	<link rel="stylesheet" href="../css/buttons.css">
+	<link rel="stylesheet" href="signup.css">
+	<script type="text/javascript" src="../lib/validator.js"></script> 
 </head>
 <body>
 	<header class="menu">
@@ -27,19 +28,29 @@
 			<div class="signup">
 				<div class="signup-header">
 					<h1>Sign Up</h1>
-					<span><a href="login.html">I already have an Account</a></span>
+					<span><a href="../login/login.html">I already have an Account</a></span>
 				</div>
 				<form class="signup-form">
 					<label for="first-name">First Name *</label>
-					<input type="text" name="first_name" id="first-name" autofocus>
-					<label for="last-name">Last Name *</label>
-					<input type="text" name="last_name" id="last-name">
-					<label for="dob">Date of Birth *</label>
-					<input type="date" name="dob" id="dob">
-					<label for="email">Email: *</label>
+					<input type="text" name="firstName" id="first_name" autofocus>
+					<span class="first-error" aria-live="polite"></span>
+
+					<label for="last-name" class="pad-div-top" >Last Name *</label>
+					<input type="text" name="lastName" id="last_name">
+					<span class="last-error" aria-live="polite"></span>
+
+					<label for="birth" class="pad-div-top">Date of Birth *</label>
+					<input type="date" name="birth" id="birth">
+					<span class="birth-error" aria-live="polite"></span>
+
+					<label for="email" class="pad-div-top">Email: *</label>
 					<input type="email" name="email" id="email" placeholder="you@domain.com">
-					<label for="password">Password: *</label>
+					<span class="email-error" aria-live="polite"></span>
+
+					<label for="password" class="pad-div-top">Password: *</label>
 					<input type="password" name="password" id="password">
+					<span class="pw-error" aria-live="polite"></span>
+
 					<span>* All fields are required</span>
 					<button type="submit" class="button button-lg">Sign Up</button>
 				</form>
@@ -49,5 +60,75 @@
 	<footer>
 		<span>Copyright &copy; 2016!</span>
 	</footer>
+
+	<script type="text/javascript">
+		var form  = document.getElementsByTagName('form')[0];
+		var firstName = document.getElementById('first_name');
+		var lastName = document.getElementById('last_name');
+		var birth = document.getElementById('birth');
+		var email = document.getElementById('email');
+		var password = document.getElementById('password');
+
+		var firstError = document.querySelector('.first-error');
+		var lastError = document.querySelector('.last-error');
+		var birthError = document.querySelector('.birth-error');
+		var emailError = document.querySelector('.email-error');
+		var pwError = document.querySelector('.pw-error');
+
+		firstName.addEventListener("keyup", function (event) {		  
+		  if (validator.isAlphanumeric(firstName.value)) {
+		    firstError.innerHTML = ""; 
+		    firstError.className = "first-error"; 
+		  	firstName.className= "valid";
+		  }else{
+		  	firstName.className= "invalid";
+		  }
+		}, false);
+
+		lastName.addEventListener("keyup", function (event) {		  
+		  if (validator.isAlphanumeric(lastName.value)) {
+		    lastError.innerHTML = ""; 
+		    lastError.className = "last-error"; 
+		  	lastName.className= "valid";
+		  }else{
+		  	lastName.className= "invalid";
+		  }
+		}, false);
+
+		email.addEventListener("keyup", function (event) {		  
+		  if (validator.isEmailAddress(email.value)) {
+		    emailError.innerHTML = ""; 
+		    emailError.className = "email-error"; 
+		  	email.className= "valid";
+		  }else{
+		  	email.className= "invalid";
+		  }
+		}, false);
+
+
+		form.addEventListener("submit", function (event) {
+		  if (validator.isEmpty(firstName.value) || !validator.isOfLength(firstName.value,2)) {
+		  	firstError.innerHTML = "Please check your name.";
+		  	firstError.className = "first-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(lastName.value) || !validator.isOfLength(lastName.value,2)){
+		  	lastError.innerHTML = "Please check your name.";
+		  	lastError.className = "last-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(birth.value) || validator.isAfterToday(birth.value)){
+		  	birthError.innerHTML = "Please check your birth day.";
+		  	birthError.className = "last-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(email.value) || !validator.isEmailAddress(email.value)){
+		  	emailError.innerHTML = "Please check your email.";
+		  	emailError.className = "last-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(password.value)){
+		  	pwError.innerHTML = "Please check your password.";
+		  	pwError.className = "last-error active";
+		  	event.preventDefault();
+		  }
+		}, false);
+	</script>
 </body>
 </html>
