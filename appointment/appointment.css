@@ -1,0 +1,58 @@
+/** APPOINTMENT SCHEDULE FORM */
+.appointment {
+	width: 60%;
+	margin: 0 auto;
+	padding: 2.5em;
+	border-radius: 5px;
+	border-top: 5px solid #FF7043;
+	color: #616161;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
+}
+.appointment-header {
+	padding: 1.5%;
+}
+.appointment-form:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.appointment-form .col6,
+.appointment-form .col4,
+.appointment-form .col12 {
+	padding: 1.5%;
+}
+.appointment-form input,
+.appointment-form button {
+	display: block;
+	width: 100%;
+}
+
+.appointment-form input[type="email"],
+.appointment-form input[type="text"],
+.appointment-form input[type="date"],
+.appointment-form input[type="time"],
+.appointment-form select,
+.appointment-form textarea {
+	width: 100%;
+	height: 2.5em;
+	padding: 0.3125em;
+	margin-top: 0.3125em;
+	margin-bottom: 0.9375em;
+	font-size: 1.25em;
+	color: rgba(0,0,0,0.6);
+	border: 1px solid #E0E0E0;
+	border-radius: 3px;
+}
+.appointment-form input[type="email"]:focus,
+.appointment-form input[type="text"]:focus,
+.appointment-form input[type="date"]:focus,
+.appointment-form input[type="time"]:focus,
+.appointment-form select:focus,
+.appointment-form textarea:focus {
+	border: 2px solid #E0E0E0;
+}
+.appointment-form textarea {
+	height: 10em;
+}
+
+/** Appointment Form */
