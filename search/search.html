@@ -4,10 +4,11 @@
 	<meta charset="utf-8">
 	<title>Search form</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
-	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
+	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/buttons.css">
 	<link rel="stylesheet" href="search.css">
+	<script type="text/javascript" src="../lib/validator.js"></script> 
 </head>
 <body>
 	<header class="menu">
@@ -29,7 +30,9 @@
 				<div class="search">
 					<h2>Search our Store</h2>
 					<form class="search-form">
-						<input type="search" name="s" id="s" autofocus placeholder="Search here">
+						<input type="text" name="search" id="search_id" autofocus placeholder="Search here">
+						<span class="search-error" aria-live="polite"></span>
+						<div class="pad-div-top">
 						<select>
 							<option>Find in...</option>
 							<option>Laptops</option>
@@ -39,7 +42,8 @@
 							<option>Printers and Photocopiers</option>
 							<option>Accessories</option>
 						</select>
-						<button class="button button-lg" type="submit">Search</button>
+						</div>
+						<button class="button button-lg pad-div-top" type="submit">Search</button>
 					</form>
 				</div>
 			</div>
@@ -51,5 +55,20 @@
 			<p>Copyright &copy; 2016</p>
 		</footer>
 	</div>
+	
+	<script type="text/javascript">
+		var form  = document.getElementsByTagName('form')[0];
+		var search = document.getElementById('search_id');
+
+		var error = document.querySelector('.search-error');
+
+		form.addEventListener("submit", function (event) {
+		 if (validator.isEmpty(search.value)) {
+		  	error.innerHTML = "Please input search.";
+		  	error.className = "search-error active";
+		  	event.preventDefault();
+		  }
+		}, false);
+	</script>
 </body>
 </html>

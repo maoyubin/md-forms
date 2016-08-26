@@ -1,0 +1,82 @@
+/** Color Builder */
+.color-builder {
+	width: 45%;
+	margin: 4% auto;
+	padding: 2.5em;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	color: #616161;
+	box-shadow: 0 6px 10px 2px rgba(0,0,0,0.25);
+}
+.color-builder h1 {
+	text-align: center;
+}
+.color-builder h1 span:first-child {
+	color: #FF0000;
+}
+.color-builder h1 span:nth-child(2) {
+	color: #00FF00;
+}
+.color-builder h1 span:nth-child(3) {
+	color: #0000FF;
+}
+.color-builder h1 span:nth-child(4) {
+	color: #490a3d;
+}
+.color-builder h1 span:nth-child(5) {
+	color: #bd1550;
+}
+.color-builder h1 span:nth-child(6) {
+	color: #e97f02
+}
+.color-builder h1 span:last-child {
+	color: #f8ca00;
+}
+.color-builder-form textarea,
+.color-builder-form input,
+.color-builder-form button,
+.color-builder-form label {
+	display: block;
+	width: 100%;
+}
+.color-builder-form textarea {
+	height: 9em;
+	max-width: 100%;
+	margin: 1em 0;
+	font-size: 1.25em;
+	color: rgba(0,0,0,0.6);
+	border: 1px solid #eeeeee;
+	border-radius: 3px;
+}
+.color-builder-form label {
+	margin-bottom: 1em;
+}
+.color-builder-form input[type="range"] {
+	margin-bottom: 1.25em;
+}
+.color-builder-form input[type="range"]::-webkit-slider-runnable-track {
+	height: 10px;
+	border: none;
+	border-radius: 3px;
+}
+.color-builder-form input[type="range"].red-range::-webkit-slider-runnable-track {
+	background-image: linear-gradient(90deg, #FFFFFF, #FF0000);
+}
+.color-builder-form input[type="range"].green-range::-webkit-slider-runnable-track {
+	background-image: linear-gradient(90deg, #FFFFFF, #00FF00);
+}
+.color-builder-form input[type="range"].blue-range::-webkit-slider-runnable-track {
+	background-image: linear-gradient(90deg, #FFFFFF, #0000FF);
+}
+.color-builder-form input[type="range"].alpha-range::-webkit-slider-runnable-track {
+	background-image: linear-gradient(90deg, #FFFFFF, #000000);
+}
+.color-builder-form input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: rgba(211,211,211,1);
+	height: 40px;
+	width: 15px;
+	border: 1px solid white;
+	border-radius: 5px;
+	margin-top: -15px;
+}
