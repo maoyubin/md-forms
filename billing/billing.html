@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	<title>Shipping and Billing form</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
-	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/form.css">
-	<link rel="stylesheet" href="css/buttons.css">
+	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/buttons.css">
+	<link rel="stylesheet" href="billing.css">
 </head>
 <body>
 	<header class="menu">
@@ -53,10 +53,8 @@
 								<label for="city">City *</label>
 								<input type="text" name="city" id="city">
 							</div>
-							<div class="col12">
-								<label for="same-for-billing">
-									<input type="checkbox" value="true" id="same-for-billing" name="same_for_billing"> My billing information is the same for shipping.
-								</label>
+							<div class="col12 same-for-billing">
+									<input type="checkbox" value="true" id="same-for-billing" name="same_for_billing"> <span>My billing information is the same for shipping.</span>
 							</div>
 						</fieldset>
 						
