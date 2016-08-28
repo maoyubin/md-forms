@@ -1,7 +1,19 @@
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 table {
 	text-align: center;
 	margin: 2em auto;
 	width: 60%;
+}
+
+div {
+	padding: 0px;
 }
 
 .step-bar {
@@ -43,7 +55,7 @@ table {
 }
 
 form {
-	width: 50%;
+	width: 40%;
 	margin: 40px auto;
 	padding: 30px;
 	font-family: 'Raleway', sans-serif;
@@ -66,23 +78,19 @@ label, input, select {
 
 label {
 	width: 30%;
-	height: 16px;
-	line-height: 16px;
-	margin-left: 15px;
-	padding: 5px;
-}
-
-input, select {	
-	width: 50%;
-	padding: 5px 10px;
-	margin-top: 2em;
-	border: 1px solid #f0f0f0;
-	background-color: #f0f0f0;
-	transition: 1s;
+	height: 1em;
+	margin-right: 0em;
+	line-height: 1em;
 }
 
 fieldset input, select {
 	height: 30px;
+	width: 40%;
+	margin-top: 2em;
+	margin-left: 0em;
+	border: 1px solid #f0f0f0;
+	background-color: #f0f0f0;
+	transition: 300ms;
 }
 
 select {
@@ -115,10 +123,6 @@ input[type="submit"]:hover {
 	background-color: rgb(224,80,56);
 }
 
-
-fieldset input, select {
-	width: 40%;
-}
 
 img.cards {
 	display: inline-block;
@@ -153,4 +157,20 @@ div.cvs-code {
 
 select.expiration {
 	width: 15%;
+}
+
+/* This is the style of our error messages */
+.holder-error, .type-error, .cvs-error, .ex-error {
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  display: block;
+  position: relative;
+  width: 40%;
+  left: 30%;
+}
+.holder-error.active, .type-error.active, .cvs-error.active, .ex-error.active {
+  padding: 0.3em 0;
 }

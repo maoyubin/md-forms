@@ -131,5 +131,40 @@
 			<p>Copyright &copy; 2016</p>
 		</footer>
 	</div>
+
+	<script type="text/javascript">
+		var form  = document.getElementsByTagName('form')[0];
+		var username = document.getElementById('username');
+		var password = document.getElementById('password');
+
+		var error = document.querySelector('.name-error');
+		var pwError = document.querySelector('.pw-error');
+
+		username.addEventListener("keyup", function (event) {		  
+		  if (validator.isAlphanumeric(username.value)) {
+		    error.innerHTML = ""; 
+		    error.className = "name-error"; 
+		  	username.className= "valid";
+		  }else{
+		  	username.className= "invalid";
+		  }
+		}, false);
+
+		form.addEventListener("submit", function (event) {
+		  if (validator.isEmpty(username.value)) {
+		  	error.innerHTML = "What's your name?";
+		  	error.className = "name-error active";
+		  	event.preventDefault();
+		  } else if (!validator.isAlphanumeric(username.value) || validator.isLength(username.value,2)) {
+		  	error.innerHTML = "Please check your name.";
+		  	error.className = "name-error active";
+		  	event.preventDefault();
+		  } else if (validator.isEmpty(password.value) || validator.isLength(password.value,5)) {
+		  	pwError.innerHTML = "Please input password.";
+		  	pwError.className = "pw-error active";
+		  	event.preventDefault();
+		  }
+		}, false);
+	</script>
 </body>
 </html>

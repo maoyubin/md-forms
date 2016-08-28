@@ -54,60 +54,61 @@
 				<legend>Payment Information</legend>
 				
 				<div>
-					<label for="holder">Cardholder</label>
-					<input id="holder" type="text" name="holdernm" >
+					<label for="holder">Cardholder</label><input id="holder" type="text" name="holder" >
+					<span class="holder-error" aria-live="polite"></span>
 				</div>
 
 				<div>
-					<label for="card-type">Card Type: </label>
-					<select id="card-type" name="card-tp">
+					<label for="card-type">Card Type: </label><select id="card_type" name="cardType">
 						<option value="" disabled selected>- Select -</option>
 						<option value="visa">Visa</option>
 						<option value="master">MasterCard</option>
 						<option value="discover">Discover</option>
 					</select>
 					<img class="cards" src="http://i.imgur.com/FiX6hRy.png" alt="card types">
+					<span class="type-error" aria-live="polite"></span>
 				</div>
 
 				<div>
-					<label for="card-no">Card Number: </label>
-					<input id="card-no" type="text" name="card-no" pattern=".{16}|.{19}" >
+					<label for="card-no">Card Number: </label><input id="card_no" type="text" name="cardNo" >
+					<span class="no-error" aria-live="polite"></span>
 				</div>
 
 				<div>
-					<label for="cvs">CVS Code: </label>
-					<input id="cvs" type="text" name="cvs" pattern=".{3}|.{4}" >
+					<label for="cvs">CVS Code: </label><input id="cvs" type="text" name="cvs">
 					<a class="cvs">What is cvs code?</a>
+					<span class="cvs-error" aria-live="polite"></span>
 					<div class="cvs-code">
 						<img src="http://i.imgur.com/fPPnBan.jpg" alt="cvs code">
 					</div>
 				</div>
 				<div>
 					<label>Expiration Date: </label>
-					<select id="exp-m" class="expiration" name="exp-m">
-						<option value="" disabled selected>- Month -</option>
-						<option value="jan">01</option>
-						<option value="feb">02</option>
-						<option value="mar">03</option>
-						<option value="apr">04</option>
-						<option value="may">05</option>
-						<option value="jun">06</option>
-						<option value="jul">07</option>
-						<option value="aug">08</option>
-						<option value="sep">09</option>
-						<option value="oct">10</option>
-						<option value="nov">11</option>
-						<option value="dec">12</option>
-					</select> / 
-					<select id="exp-y" class="expiration" name="exp-y">
-						<option value="" disabled selected>- Year -</option>
-						<option value="2016">2016</option>
-						<option value="2017">2017</option>
-						<option value="2018">2018</option>
-						<option value="2019">2019</option>
-						<option value="2020">2020</option>
-						<option value="2021">2021</option>
-					</select>
+						<select id="exp-m" class="expiration" name="exp-m">
+							<option value="" disabled selected>- Month -</option>
+							<option value="jan">01</option>
+							<option value="feb">02</option>
+							<option value="mar">03</option>
+							<option value="apr">04</option>
+							<option value="may">05</option>
+							<option value="jun">06</option>
+							<option value="jul">07</option>
+							<option value="aug">08</option>
+							<option value="sep">09</option>
+							<option value="oct">10</option>
+							<option value="nov">11</option>
+							<option value="dec">12</option>
+						</select> / 
+						<select id="exp-y" class="expiration" name="exp-y">
+							<option value="" disabled selected>- Year -</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+						</select>
+						<span class="ex-error" aria-live="polite"></span>
 				</div>
 			</fieldset>
 		</div>
@@ -120,5 +121,55 @@
 			<p>Copyright &copy; 2016</p>
 		</footer>
 	</div>
+
+	<script type="text/javascript">
+		var form  = document.getElementsByTagName('form')[0];
+		var holder = document.getElementById('holder');
+		var type = document.getElementById('card_type');
+		var no = document.getElementById('card_no');
+		var cvs = document.getElementById('cvs');
+		var exm = document.getElementById('exp-m');
+		var exy = document.getElementById('exp-y');
+
+		var holderError = document.querySelector('.holder-error');
+		var typeError = document.querySelector('.type-error');
+		var noError = document.querySelector('.no-error');
+		var cvsError = document.querySelector('.cvs-error');
+		var exError = document.querySelector('.ex-error');
+
+		holder.addEventListener("keyup", function (event) {		  
+		  if (validator.isAlphanumeric(holder.value)) {
+		    holderError.innerHTML = ""; 
+		    holderError.className = "holder-error"; 
+		  	holder.className= "valid";
+		  }else{
+		  	holder.className= "invalid";
+		  }
+		}, false);
+
+		form.addEventListener("submit", function (event) {
+		  if (validator.isEmpty(holder.value)) {
+		  	holderError.innerHTML = "What's your name?";
+		  	holderError.className = "holder-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(type.value)) {
+		  	typeError.innerHTML = "Please select card type";
+		  	typeError.className = "type-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(no.value) || !validator.isCreditCard(no.value)) {
+		  	noError.innerHTML = "Please input card number";
+		  	noError.className = "type-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(cvs.value) || validator.isOfLength(cvs.value,5)) {
+		  	cvsError.innerHTML = "Please input cvs number";
+		  	cvsError.className = "cvs-error active";
+		  	event.preventDefault();
+		  }else if (validator.isEmpty(exm.value) || validator.isEmpty(exy.value)) {
+		  	exError.innerHTML = "Please input cvs number";
+		  	exError.className = "ex-error active";
+		  	event.preventDefault();
+		  } 
+		}, false);
+	</script>
 </body>
 </html>
