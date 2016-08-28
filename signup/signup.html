@@ -56,7 +56,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</section>
 	<footer>
 		<span>Copyright &copy; 2016!</span>
 	</footer>
@@ -74,6 +74,10 @@
 		var birthError = document.querySelector('.birth-error');
 		var emailError = document.querySelector('.email-error');
 		var pwError = document.querySelector('.pw-error');
+
+		var currDate = new Date();
+		var beforeYear = new Date();
+		beforeYear.setTime(currDate.getTime() - 10*365 * 24 * 60 * 60 * 1000);
 
 		firstName.addEventListener("keyup", function (event) {		  
 		  if (validator.isAlphanumeric(firstName.value)) {
@@ -115,7 +119,7 @@
 		  	lastError.innerHTML = "Please check your name.";
 		  	lastError.className = "last-error active";
 		  	event.preventDefault();
-		  }else if (validator.isEmpty(birth.value) || validator.isAfterToday(birth.value)){
+		  }else if (validator.isEmpty(birth.value) || validator.isBeforeDate(beforeYear, birth.value)){
 		  	birthError.innerHTML = "Please check your birth day.";
 		  	birthError.className = "last-error active";
 		  	event.preventDefault();
@@ -123,7 +127,7 @@
 		  	emailError.innerHTML = "Please check your email.";
 		  	emailError.className = "last-error active";
 		  	event.preventDefault();
-		  }else if (validator.isEmpty(password.value)){
+		  }else if (validator.isEmpty(password.value) || validator.isLength(password.value,5)){
 		  	pwError.innerHTML = "Please check your password.";
 		  	pwError.className = "last-error active";
 		  	event.preventDefault();

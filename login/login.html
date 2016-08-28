@@ -8,14 +8,20 @@
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/buttons.css">
 	<link rel="stylesheet" href="login.css">
-	<script type="text/javascript" src="../lib/validator.js"></script>  	
+	<script type="text/javascript" src="../lib/validator.js"></script>
 </head>
 <body>
 	<header class="menu">
 		<nav>
 			<ul>
-				<li><a href="../../../index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Projects</a></li>
-				<li><a href="../index.html">All Forms</a></li>
+				<li>
+					<a href="../../../index.html"> <i class="fa fa-arrow-left" aria-hidden="true"></i>
+						Back to Projects
+					</a>
+				</li>
+				<li>
+					<a href="../index.html">All Forms</a>
+				</li>
 			</ul>
 		</nav>
 	</header>
@@ -28,7 +34,9 @@
 			<div class="login">
 				<div class="login-header">
 					<h1>Login</h1>
-					<span><a href="../signup/signup.html">Create an Account</a></span>
+					<span>
+						<a href="../signup/signup.html">Create an Account</a>
+					</span>
 				</div>
 				<form class="login-form" id='my_form' novalidate>
 					<label for="username">User Name: *</label>
@@ -36,7 +44,9 @@
 					<span class="name-error" aria-live="polite"></span>
 
 					<label for="password" class="pad-div-top" >Password: *</label>
-					<span><a href="#">Forgot?</a></span>
+					<span>
+						<a href="#">Forgot?</a>
+					</span>
 
 					<input type="password" class="text-input" name="password" id="password">
 					<span class="pw-error" aria-live="polite"></span>
@@ -49,7 +59,7 @@
 	<footer>
 		<span>Copyright &copy; 2016!</span>
 	</footer>
-	
+
 	<script type="text/javascript">
 		var form  = document.getElementsByTagName('form')[0];
 		var username = document.getElementById('username');
@@ -69,15 +79,15 @@
 		}, false);
 
 		form.addEventListener("submit", function (event) {
-		  if (!validator.isAlphanumeric(username.value)) {
-		  	error.innerHTML = "Please check your name.";
-		  	error.className = "name-error active";
-		  	error.preventDefault();
-		  }else if (validator.isEmpty(username.value)) {
+		  if (validator.isEmpty(username.value)) {
 		  	error.innerHTML = "What's your name?";
 		  	error.className = "name-error active";
 		  	event.preventDefault();
-		  }else if (validator.isEmpty(password.value)) {
+		  } else if (!validator.isAlphanumeric(username.value) || validator.isLength(username.value,2)) {
+		  	error.innerHTML = "Please check your name.";
+		  	error.className = "name-error active";
+		  	event.preventDefault();
+		  } else if (validator.isEmpty(password.value) || validator.isLength(password.value,5)) {
 		  	pwError.innerHTML = "Please input password.";
 		  	pwError.className = "pw-error active";
 		  	event.preventDefault();

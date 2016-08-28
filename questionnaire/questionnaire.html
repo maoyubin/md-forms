@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Questionnaire form</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
-	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
+	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/buttons.css">
 	<link rel="stylesheet" href="questionnaire.css">
@@ -41,7 +41,8 @@
 								<label><input type="radio" value="Manchester City" name="club" id="club3">Manchester City</label>
 								<label><input type="radio" value="Manchester United" name="club" id="club4">Manchester United</label>
 								<label><input type="radio" value="other" name="club" id="club5">Other</label>
-								<input type="text" name="other_club" placeholder="Specify other club">
+								<input type="text" name="otherClub" id="other_club" placeholder="Specify other club">
+								<span class="error" aria-live="polite"></span>
 							</div>
 						</div>
 						<button type="submit" class="button button-lg">Submit</button>
@@ -55,5 +56,42 @@
 			<p>Copyright &copy; 2016</p>
 		</footer>
 	</div>
+
+	<script type="text/javascript">
+		var form  = document.getElementsByTagName('form')[0];
+		var inputs = document.querySelectorAll('input[type="radio"]');
+
+		var error = document.querySelector('.error');
+
+
+		form.addEventListener("submit", function (event) {
+			var selected = false;
+			var otherSelected = false;
+			var selecteNode = document.getElementById('club5');
+			var textNode = document.getElementById('other_club');
+			for(var i=0;i<inputs.length;i++){
+				if(inputs[i].checked){
+					selected = true;
+					selecteNode = inputs[i];
+					break;
+				}
+			}
+
+			if(selecteNode.getAttribute('id')==='club5'){
+				otherSelected = true;
+			}
+
+
+			if (!selected) {
+				error.innerHTML = "Please select one item.";
+				error.className = "error active";
+				event.preventDefault();
+			}else if(otherSelected && validator.isEmpty(textNode.value)){
+				error.innerHTML = "Please input other text.";
+				error.className = "error active";
+				event.preventDefault();
+			}
+		}, false);
+	</script>
 </body>
 </html>

@@ -4,17 +4,18 @@
 	<meta charset="utf-8">
 	<title>Search form</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
-	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css">
+	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="appointment.css">
 	<link rel="stylesheet" href="../css/buttons.css">
+	<script type="text/javascript" src="../lib/validator.js"></script> 
 </head>
 <body>
 	<header class="menu">
 		<nav>
 			<ul>
-				<li><a href="../../index.html"><i class="ti-arrow-left"></i> Back to Projects</a></li>
-				<li><a href="index.html">All Forms</a></li>
+				<li><a href="../../../index.html"><i class="ti-arrow-left"></i> Back to Projects</a></li>
+				<li><a href="../index.html">All Forms</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -34,23 +35,28 @@
 							<div class="col6">
 								<label for="email">Email *</label>
 								<input type="email" name="email" id="email" autofocus>
+								<span class="email-error" aria-live="polite"></span>
 							</div>
 							<div class="col6">
 								<label for="phone_number">Phone Number *</label>
-								<input type="text" name="phone_number" id="phone_number">
+								<input type="text" name="phoneNumber" id="phone_number">
+								<span class="phone-error" aria-live="polite"></span>
 							</div>
 							<div class="col12">
 								<label for="message">Message *</label>
 								<textarea name="message" id="message"></textarea>
+								<span class="message-error" aria-live="polite"></span>
 							</div>
 							<div class="row">
 								<div class="col4">
 									<label for="schedule-date">Date *</label>
-									<input type="date" name="schedule_date" id="schedule-date">
+									<input type="date" name="scheduleDate" id="schedule_date">
+									<span class="schedule-date-error" aria-live="polite"></span>
 								</div>
 								<div class="col4">
 									<label for="schedule-time">Time *</label>
-									<input type="time" name="schedule_time" id="schedule-time">
+									<input type="time" name="scheduleTime" id="schedule_time">
+									<span class="schedule-time-error" aria-live="polite"></span>
 								</div>
 								<div class="col4">
 									<label for="schedule-timezone">Timezone *</label>
@@ -75,5 +81,66 @@
 			<p>Copyright &copy; 2016</p>
 		</footer>
 	</div>
+
+	<script type="text/javascript">
+		var form  = document.getElementsByTagName('form')[0];
+
+		var email = document.getElementById('email');
+		var phone = document.getElementById('phone_number');
+		var message = document.getElementById('message');
+		var scheduleDate = document.getElementById('schedule_date');
+		var scheduleTime = document.getElementById('schedule_time');
+
+		var emailError = document.querySelector('.email-error');
+		var phoneError = document.querySelector('.phone-error');
+		var messageError = document.querySelector('.message-error');
+		var scheduleDateError = document.querySelector('.schedule-date-error');
+		var scheduleTimeError = document.querySelector('.schedule-time-error');
+
+		email.addEventListener("keyup", function (event) {		  
+		  if (validator.isEmailAddress(email.value)) {
+		    emailError.innerHTML = ""; 
+		    emailError.className = "email-error"; 
+		  	email.className= "valid";
+		  }else{
+		  	email.className= "invalid";
+		  }
+		}, false);
+
+		phone.addEventListener("keyup", function (event) {		  
+		  if (validator.isNumber(phone.value)) {
+		    phoneError.innerHTML = ""; 
+		    phoneError.className = "phone-error"; 
+		  	phone.className= "valid";
+		  }else{
+		  	phone.className= "invalid";
+		  }
+		}, false);
+
+
+		form.addEventListener("submit", function (event) {
+			if (validator.isEmpty(email.value) || !validator.isEmailAddress(email.value)){
+				emailError.innerHTML = "Please check your email.";
+				emailError.className = "email-error active";
+				event.preventDefault();
+			}else if (validator.isEmpty(phone.value) || !validator.isPhoneNumber(phone.value)){
+				phoneError.innerHTML = "Please check your cell number.";
+				phoneError.className = "phone-error active";
+				event.preventDefault();
+			}else if (validator.isEmpty(message.value)){
+				messageError.innerHTML = "Please input messages.";
+				messageError.className = "message-error active";
+				event.preventDefault();
+			}else if (validator.isEmpty(scheduleDate.value) || validator.isBeforeToday(scheduleDate.value)){
+				scheduleDateError.innerHTML = "Please input schedule date.";
+				scheduleDateError.className = "schedule-date-error active";
+				event.preventDefault();
+			}else if (validator.isEmpty(scheduleTime.value)){
+				scheduleTimeError.innerHTML = "Please input schedule time.";
+				scheduleTimeError.className = "schedule-time-error active";
+				event.preventDefault();
+			}
+		}, false);
+	</script>
 </body>
 </html>
