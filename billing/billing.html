@@ -7,14 +7,20 @@
 	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/buttons.css">
-	<link rel="stylesheet" href="billing.css">
-</head>
+	<link rel="stylesheet" href="billing.css"></head>
+	<script type="text/javascript" src="../lib/validator.js"></script>
 <body>
 	<header class="menu">
 		<nav>
 			<ul>
-				<li><a href="../../index.html"><i class="ti-arrow-left"></i> Back to Projects</a></li>
-				<li><a href="index.html">All Forms</a></li>
+				<li>
+					<a href="../../../index.html"> <i class="ti-arrow-left"></i>
+						Back to Projects
+					</a>
+				</li>
+				<li>
+					<a href="../index.html">All Forms</a>
+				</li>
 			</ul>
 		</nav>
 	</header>
@@ -24,72 +30,100 @@
 			<p>Created from project assignments at Learn. Modern Developer</p>
 		</section>
 		<section class="forms">
-			<div class="container">
-				<div class="billing">
-					<div class="billing-header">
-						<h2>Billing and Shipping</h2>
-						<span>Already have an account? <a href="login.html">Sign In</a></span>
-					</div>
-					<form class="billing-form">
-						<fieldset>
-							<legend>BILLING DETAILS</legend>
-							<div class="col6">
-								<label for="first-name">First Name *</label>
-								<input type="text" name="first_name" id="first-name" autofocus>
-							</div>
-							<div class="col6">
-								<label for="last-name">Last Name *</label>
-								<input type="text" name="last_name" id="last-name">
-							</div>
-							<div class="col12">
-								<label for="address">Address *</label>
-								<input type="text" name="address" id="address">
-							</div>
-							<div class="col6">
-								<label for="country">Country *</label>
-								<input type="text" name="country" id="country">
-							</div>
-							<div class="col6">
-								<label for="city">City *</label>
-								<input type="text" name="city" id="city">
-							</div>
-							<div class="col12 same-for-billing">
-									<input type="checkbox" value="true" id="same-for-billing" name="same_for_billing"> <span>My billing information is the same for shipping.</span>
-							</div>
-						</fieldset>
-						
-						<fieldset>
-							<legend>SHIPPING DETAILS</legend>
-							<div class="col6">
-								<label for="first-name">First Name *</label>
-								<input type="text" name="first_name" id="first-name" autofocus>
-							</div>
-							<div class="col6">
-								<label for="last-name">Last Name *</label>
-								<input type="text" name="last_name" id="last-name">
-							</div>
-							<div class="col12">
-								<label for="address">Address *</label>
-								<input type="text" name="address" id="address">
-							</div>
-							<div class="col6">
-								<label for="country">Country *</label>
-								<input type="text" name="country" id="country">
-							</div>
-							<div class="col6">
-								<label for="city">City *</label>
-								<input type="text" name="city" id="city">
-							</div>
-						</fieldset>
+			<table>
+				<tr>
+					<td>
+						<div class="step-bar previous">1</div>
+					</td>
+					<td>
+						<div class="line previous"></div>
+					</td>
+					<td>
+						<div class="step-bar">2</div>
+					</td>
+					<td>
+						<div class="line next"></div>
+					</td>
+					<td>
+						<div class="step-bar next">3</div>
+					</td>
+					<td>
+						<div class="line next"></div>
+					</td>
+					<td>
+						<div class="step-bar next">4</div>
+					</td>
+				</tr>
 
-						<fieldset>
-							<div class="col6 right">
-								<button type="submit" class="button button-lg">Proceed to Checkout</button>
-							</div>	
-						</fieldset>
-					</form>
+				<tr>
+					<td class="steps previous">Shopping</td>
+					<td></td>
+					<td class="steps">Address</td>
+					<td></td>
+					<td class="steps next-tx">Payment</td>
+					<td></td>
+					<td class="steps next-tx">Confirm</td>
+				</tr>
+			</table>
+
+			<form method="post" id="ship-bill" autocomplete="off">
+				<div id="billing">
+					<fieldset name="billing">
+						<legend>Billing Address</legend>
+						<label for="fname" class="">First Name:</label>
+						<input class="name" id="fname" type="text" name="firstn" >
+
+						<label for="lname" class="">Last Name:</label>
+						<input class="name" id="lname" type="text" name="lastn" >
+
+						<label for="state" class="">State:</label>
+						<input class="state" id="state" type="text" name="state">
+
+						<label for="city" class="">City:</label>
+						<input class="city-input" id="city" type="text" name="address" >
+
+						<label for="address" class="">Address:</label>
+						<input class="address-rq" id="address1" type="text" name="address" placeholder="Street Address" >
+
+						<label for="email" class="">Email:</label>
+						<input class="email-input" id="email" type="email" name="email" >
+
+						<label for="phone">Phone Number:</label>
+						<input class="phone-input" id="phone" type="tel" name="usrtel">
+					</fieldset>
 				</div>
-			</div>
+
+				<input id="checkbox-toggle" type="checkbox" name="same-to-billing">
+				Same as billing address
+				<br>
+
+				<div id="shipping">
+					<fieldset class="toggle-bd" name="shipping">
+						<legend>Shipping Address</legend>
+						<label for="sp-fname" class="">First Name:</label>
+						<input class="name" id="sp-fname" type="text" name="firstn" >
+
+						<label for="sp-lname" class="">Last Name:</label>
+						<input class="name" id="sp-lname" type="text" name="lastn" >
+
+						<label for="sp-state" class="">State:</label>
+						<input id="sp-state" type="text">
+
+						<label for="sp-city">City:</label>
+						<input class="city-input" id="sp-city" type="text" name="address" >
+
+						<label for="sp-address1" class="">Address:</label>
+						<input class="address-rq" id="sp-address1" type="text" name="address" placeholder="Street Address" >		
+
+						<label for="email" class="">Email:</label>
+						<input class="email-input" id="sp-email" type="email" name="email" >
+
+						<label for="sp-phone">Phone Number:</label>
+						<input class="phone-input" id="sp-phone" type="tel" name="usrtel">
+					</fieldset>
+				</div>
+
+				<input type="submit" name="submit" value="Next Step"></form>
 		</section>
 	</main>
 	<div id="footer-wrap">

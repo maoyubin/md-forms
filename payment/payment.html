@@ -6,15 +6,15 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300,400|Roboto:300,400' rel='stylesheet'>
 	<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/form.css">
-	<link rel="stylesheet" href="../css/buttons.css">
+	<link rel="stylesheet" href="payment.css">
+	<script type="text/javascript" src="../lib/validator.js"></script>
 </head>
 <body>
 	<header class="menu">
 		<nav>
 			<ul>
-				<li><a href="../../index.html"><i class="ti-arrow-left"></i> Back to Projects</a></li>
-				<li><a href="index.html">All Forms</a></li>
+				<li><a href="../../../index.html"><i class="ti-arrow-left"></i> Back to Projects</a></li>
+				<li><a href="../index.html">All Forms</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -24,81 +24,95 @@
 			<p>Created from project assignments at Learn. Modern Developer</p>
 		</section>
 		<section class="forms">
-			<div class="container">
-				<div class="payment">
-					<div class="payment-secure">
-						<p>This is a secure 128bit Encrypted payment. You are safe!</p>
-					</div>
-					<form class="payment-form">
-						<div class="col12">
-							<label for="name">Name <small>as it appears on card</small></label>
-							<input type="text" name="name" id="name" autofocus>
-						</div>
-						<div class="row">
-							<div class="col9">
-								<label for="card-number">Card Number <small>use your Credit / Debit card</small></label>
-								<input type="text" name="card_number" id="card-number">
-							</div>
-							<div class="col3">
-								<label for="card-number">&nbsp; </label>
-								<img src="images/visa.jpg" class="visa-img">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col12">
-								<p>When does the card expire?</p>
-							</div>
-							<div class="col3">
-								<label for="schedule-timezone">Month</label>
-								<select>
-									<option>January</option>
-									<option>February</option>
-									<option>March</option>
-									<option>April</option>
-									<option>May</option>
-									<option>June</option>
-									<option>July</option>
-									<option>August</option>
-									<option>September</option>
-									<option>October</option>
-									<option>November</option>
-									<option>December</option>
-								</select>
-							</div>
-							<div class="col3">
-								<label for="schedule-timezone">Year</label>
-								<select>
-									<option>2016</option>
-									<option>2017</option>
-									<option>2018</option>
-									<option>2019</option>
-									<option>2020</option>
-									<option>2021</option>
-								</select>
-							</div>
-							<div class="col3">
-								<label for="cvv">CVV2/CVC2</label>
-								<input type="text" name="cvv" id="cvv">
-							</div>
-							<div class="col3">
-								<label for="cvv">&nbsp;</label>
-								<span class="cvv">The last 3 digits on the back of your card.</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col12">
-								<p class="label">You will be charged $100</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col6 right">
-								<button type="submit" class="button button-md">Complete Payment</button>
-							</div>
-						</div>
-			
-					</form>
+			<div class="header">
+		<table>
+			<tr>
+				<td><div class="step-bar previous">1</div></td>
+				<td><div class="line previous"></div></td>
+				<td><div class="step-bar previous ">2</div></td>
+				<td><div class="line previous"></div></td>
+				<td><div class="step-bar">3</div></td>
+				<td><div class="line next"></div></td>
+				<td><div class="step-bar next">4</div></td>
+			</tr>
+
+			<tr>
+				<td class="steps previous-tx">Shopping</td>
+				<td></td>
+				<td class="steps previous-tx">Address</td>
+				<td></td>
+				<td class="steps">Payment</td>
+				<td></td>
+				<td class="steps next-tx">Confirm</td>
+			</tr>
+		</table>
+	</div>
+
+	<form method="post" id="card-info">
+		<div class="payment">
+			<fieldset name="payment">
+				<legend>Payment Information</legend>
+				
+				<div>
+					<label for="holder">Cardholder</label>
+					<input id="holder" type="text" name="holdernm" >
 				</div>
-			</div>
+
+				<div>
+					<label for="card-type">Card Type: </label>
+					<select id="card-type" name="card-tp">
+						<option value="" disabled selected>- Select -</option>
+						<option value="visa">Visa</option>
+						<option value="master">MasterCard</option>
+						<option value="discover">Discover</option>
+					</select>
+					<img class="cards" src="http://i.imgur.com/FiX6hRy.png" alt="card types">
+				</div>
+
+				<div>
+					<label for="card-no">Card Number: </label>
+					<input id="card-no" type="text" name="card-no" pattern=".{16}|.{19}" >
+				</div>
+
+				<div>
+					<label for="cvs">CVS Code: </label>
+					<input id="cvs" type="text" name="cvs" pattern=".{3}|.{4}" >
+					<a class="cvs">What is cvs code?</a>
+					<div class="cvs-code">
+						<img src="http://i.imgur.com/fPPnBan.jpg" alt="cvs code">
+					</div>
+				</div>
+				<div>
+					<label>Expiration Date: </label>
+					<select id="exp-m" class="expiration" name="exp-m">
+						<option value="" disabled selected>- Month -</option>
+						<option value="jan">01</option>
+						<option value="feb">02</option>
+						<option value="mar">03</option>
+						<option value="apr">04</option>
+						<option value="may">05</option>
+						<option value="jun">06</option>
+						<option value="jul">07</option>
+						<option value="aug">08</option>
+						<option value="sep">09</option>
+						<option value="oct">10</option>
+						<option value="nov">11</option>
+						<option value="dec">12</option>
+					</select> / 
+					<select id="exp-y" class="expiration" name="exp-y">
+						<option value="" disabled selected>- Year -</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+					</select>
+				</div>
+			</fieldset>
+		</div>
+		<input type="submit" name="submit" value="Next Step">
+	</form>
 		</section>
 	</main>
 	<div id="footer-wrap">
