@@ -66,16 +66,16 @@
 				</tr>
 			</table>
 
-			<form method="post" id="ship-bill" autocomplete="off">
+			<form method="post" id="ship_bill" autocomplete="off">
 				<div id="billing">
 					<fieldset name="billing">
 						<legend>Billing Address</legend>
 						<label for="fname" class="">First Name:</label>
-						<input class="name" id="fname" type="text" name="firstn" >
-
+						<input class="name" id="fname" type="text" name="firstn" required>
+						
 						<label for="lname" class="">Last Name:</label>
-						<input class="name" id="lname" type="text" name="lastn" >
-
+						<input class="name" id="lname" type="text" name="lastn" required>
+						
 						<label for="state" class="">State:</label>
 						<input class="state" id="state" type="text" name="state">
 
@@ -100,11 +100,11 @@
 				<div id="shipping">
 					<fieldset class="toggle-bd" name="shipping">
 						<legend>Shipping Address</legend>
-						<label for="sp-fname" class="">First Name:</label>
-						<input class="name" id="sp-fname" type="text" name="firstn" >
+						<label for="sp-fname">First Name:</label>
+						<input class="name" id="sp-fname" type="text" name="firstn" required>
 
-						<label for="sp-lname" class="">Last Name:</label>
-						<input class="name" id="sp-lname" type="text" name="lastn" >
+						<label for="sp-lname">Last Name:</label>
+						<input class="name" id="sp-lname" type="text" name="lastn" required>
 
 						<label for="sp-state" class="">State:</label>
 						<input id="sp-state" type="text">
@@ -133,38 +133,36 @@
 	</div>
 
 	<script type="text/javascript">
-		var form  = document.getElementsByTagName('form')[0];
-		var username = document.getElementById('username');
-		var password = document.getElementById('password');
+		validator.isName = function(name) {
+			if (!name || validator.isEmpty(name) || !validator.isOfLength(name,2)) {
+				return false;
+			}
+			return true;
+		};
+		
+		var shipBillForm = document.getElementById("ship_bill"),
+		nameInputs = document.getElementsByClassName("name");
+		
+		function addCustomeValidity(elements, funcNm, invalidMsg) {
+			for (i = 0; i < elements.length; i++) {
+			    elements[i].addEventListener("keyup", function() {
+			        if (!validator[funcNm](this.value)) {
+			            this.setCustomValidity(invalidMsg);
+			            this.classList.add("invalid");
+			        } else {
+			            this.setCustomValidity("");
+			            this.classList.remove("invalid");
+			        }
+			    });
+			}
+		}
 
-		var error = document.querySelector('.name-error');
-		var pwError = document.querySelector('.pw-error');
+	    addCustomeValidity(nameInputs, "isName", "Invalid name input");
+	    
+	    shipBillForm.addEventListener("submit", function(e) {
+        	e.preventDefault();
 
-		username.addEventListener("keyup", function (event) {		  
-		  if (validator.isAlphanumeric(username.value)) {
-		    error.innerHTML = ""; 
-		    error.className = "name-error"; 
-		  	username.className= "valid";
-		  }else{
-		  	username.className= "invalid";
-		  }
-		}, false);
-
-		form.addEventListener("submit", function (event) {
-		  if (validator.isEmpty(username.value)) {
-		  	error.innerHTML = "What's your name?";
-		  	error.className = "name-error active";
-		  	event.preventDefault();
-		  } else if (!validator.isAlphanumeric(username.value) || validator.isLength(username.value,2)) {
-		  	error.innerHTML = "Please check your name.";
-		  	error.className = "name-error active";
-		  	event.preventDefault();
-		  } else if (validator.isEmpty(password.value) || validator.isLength(password.value,5)) {
-		  	pwError.innerHTML = "Please input password.";
-		  	pwError.className = "pw-error active";
-		  	event.preventDefault();
-		  }
-		}, false);
+		});
 	</script>
 </body>
 </html>
